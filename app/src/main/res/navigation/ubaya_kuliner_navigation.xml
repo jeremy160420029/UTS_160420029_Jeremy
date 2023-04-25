@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ubaya_kuliner_navigation"
+    app:startDestination="@id/itemHome">
+
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.uts_160420029_jeremy.view.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_ubayaKulinerList"
+            app:destination="@id/itemHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemHome"
+        android:name="com.example.uts_160420029_jeremy.view.UbayaKulinerList"
+        android:label="fragment_ubaya_kuliner_list"
+        tools:layout="@layout/fragment_ubaya_kuliner_list" />
+    <fragment
+        android:id="@+id/itemHistory"
+        android:name="com.example.uts_160420029_jeremy.view.History"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/itemProfile"
+        android:name="com.example.uts_160420029_jeremy.view.Profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/itemReservation"
+        android:name="com.example.uts_160420029_jeremy.view.Reservation"
+        android:label="fragment_reservation"
+        tools:layout="@layout/fragment_reservation" />
+    <fragment
+        android:id="@+id/itemCategory"
+        android:name="com.example.uts_160420029_jeremy.view.FoodCategory"
+        android:label="fragment_food_category"
+        tools:layout="@layout/fragment_food_category" />
+</navigation>
