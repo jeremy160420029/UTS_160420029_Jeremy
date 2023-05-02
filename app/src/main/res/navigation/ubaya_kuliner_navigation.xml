@@ -18,7 +18,11 @@
         android:id="@+id/itemHome"
         android:name="com.example.uts_160420029_jeremy.view.UbayaKulinerList"
         android:label="fragment_ubaya_kuliner_list"
-        tools:layout="@layout/fragment_ubaya_kuliner_list" />
+        tools:layout="@layout/fragment_ubaya_kuliner_list">
+        <action
+            android:id="@+id/actionUbayaKulinerDetail"
+            app:destination="@id/ubayaKulinerDetail" />
+    </fragment>
     <fragment
         android:id="@+id/itemHistory"
         android:name="com.example.uts_160420029_jeremy.view.History"
@@ -39,4 +43,13 @@
         android:name="com.example.uts_160420029_jeremy.view.FoodCategory"
         android:label="fragment_food_category"
         tools:layout="@layout/fragment_food_category" />
+    <fragment
+        android:id="@+id/ubayaKulinerDetail"
+        android:name="com.example.uts_160420029_jeremy.view.UbayaKulinerDetail"
+        android:label="fragment_ubaya_kuliner_detail"
+        tools:layout="@layout/fragment_ubaya_kuliner_detail" >
+        <argument
+            android:name="detail"
+            app:argType="string" />
+    </fragment>
 </navigation>
