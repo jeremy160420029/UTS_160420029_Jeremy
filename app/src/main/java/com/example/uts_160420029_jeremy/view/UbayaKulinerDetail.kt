@@ -1,11 +1,25 @@
 package com.example.uts_160420029_jeremy.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.uts_160420029_jeremy.R
+import com.example.uts_160420029_jeremy.util.loadImage
+import com.example.uts_160420029_jeremy.viewmodel.DetailFood
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -20,6 +34,7 @@ class UbayaKulinerDetail : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var viewModel: DetailFood
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +48,36 @@ class UbayaKulinerDetail : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_ubaya_kuliner_detail, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        var detailFood = ""
+        if(arguments != null){
+            detailFood = UbayaKulinerDetailArgs.fromBundle(requireArguments()).detail
+        }
+        viewModel = ViewModelProvider(this).get(DetailFood::class.java)
+        viewModel.fetch(detailFood)
+
+        val txtRestoNameD = view.findViewById<TextView>(R.id.textRestoNameDD)
+        val txtDescResto = view.findViewById<TextView>(R.id.txtDescResto)
+        val txtReviewsResto = view.findViewById<TextView>(R.id.txtReviewsResto)
+        val txtRatingResto = view.findViewById<TextView>(R.id.txtRatingResto)
+        var imageResto = view.findViewById<ImageView>(R.id.imageResto)
+        var progressBar = view.findViewById<ProgressBar>(R.id.progressBar4)
+
+        observeViewModel(txtRestoNameD, txtDescResto, txtReviewsResto, txtRatingResto, imageResto, progressBar)
+    }
+
+    fun observeViewModel(txtRestoName: TextView, txtDescResto: TextView, txtReviewsResto: TextView, txtRatingResto: TextView, imageResto: ImageView, progressBar: ProgressBar) {
+        viewModel.foodDD.observe(viewLifecycleOwner, Observer {
+            var foodList = it
+            txtRestoName.text = foodList.restoName
+            txtDescResto.text = foodList.description
+            txtReviewsResto.text = foodList.restoReview
+            txtRatingResto.text = foodList.restoRating
+
+            imageResto.loadImage(foodList.photoUrl, progressBar)
+        })
     }
 
     companion object {

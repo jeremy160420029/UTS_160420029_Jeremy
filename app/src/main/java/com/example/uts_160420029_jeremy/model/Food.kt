@@ -15,5 +15,9 @@ data class Food(
     @SerializedName("opening_hours")
     val openingHours:String,
     @SerializedName("distance")
-    val distance:String
+    val distance:String,
+    @SerializedName("description")
+    val description:String,
+    @SerializedName("category")
+    val category:String
 )

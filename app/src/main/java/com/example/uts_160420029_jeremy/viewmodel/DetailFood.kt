@@ -4,7 +4,6 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
@@ -13,42 +12,33 @@ import com.example.uts_160420029_jeremy.model.Food
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class FoodList(application: Application): AndroidViewModel(application) {
-    val foodListLD = MutableLiveData<ArrayList<Food>>()
-    val foodLoadErrorLD = MutableLiveData<Boolean>()
-    val loadingLD = MutableLiveData<Boolean>()
+class DetailFood(application: Application): AndroidViewModel(application) {
+    val foodDD = MutableLiveData<Food>()
     val TAG = "volleyTag"
     private var queue: RequestQueue? = null
 
-    fun refresh() {
-        loadingLD.value = true
-        foodLoadErrorLD.value = false
-
+    fun fetch(idFood:String){
         queue = Volley.newRequestQueue(getApplication())
         val url = "https://raw.githubusercontent.com/jeremy160420029/UTS_160420029_Jeremy/main/foods.json"
-
         val stringRequest = StringRequest(
             Request.Method.GET, url,
             {
                 val sType = object : TypeToken<List<Food>>() { }.type
                 val result = Gson().fromJson<List<Food>>(it, sType)
-                foodListLD.value = result as ArrayList<Food>?
-                loadingLD.value = false
 
-                Log.d("showvoley", result.toString())
+                result.forEach{
+                    if(it.id.equals(idFood)){
+                        foodDD.value = it
+                    }
+                }
+
+                Log.d("showvoley", foodDD.value.toString())
             },
             {
                 Log.d("showvoley", it.toString())
-                foodLoadErrorLD.value = false
-                loadingLD.value = false
             })
-
         stringRequest.tag = TAG
         queue?.add(stringRequest)
-    }
 
-    override fun onCleared() {
-        super.onCleared()
-        queue?.cancelAll(TAG)
     }
 }
