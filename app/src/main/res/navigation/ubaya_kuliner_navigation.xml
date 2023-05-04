@@ -6,15 +6,6 @@
     app:startDestination="@id/itemHome">
 
     <fragment
-        android:id="@+id/login"
-        android:name="com.example.uts_160420029_jeremy.view.Login"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_login_to_ubayaKulinerList"
-            app:destination="@id/itemHome" />
-    </fragment>
-    <fragment
         android:id="@+id/itemHome"
         android:name="com.example.uts_160420029_jeremy.view.UbayaKulinerList"
         android:label="fragment_ubaya_kuliner_list"
@@ -42,7 +33,14 @@
         android:id="@+id/itemCategory"
         android:name="com.example.uts_160420029_jeremy.view.FoodCategory"
         android:label="fragment_food_category"
-        tools:layout="@layout/fragment_food_category" />
+        tools:layout="@layout/fragment_food_category" >
+        <action
+            android:id="@+id/actionToCatList"
+            app:destination="@id/categoryList" />
+        <action
+            android:id="@+id/action_itemCategory_to_recommendation"
+            app:destination="@id/recommendation" />
+    </fragment>
     <fragment
         android:id="@+id/ubayaKulinerDetail"
         android:name="com.example.uts_160420029_jeremy.view.UbayaKulinerDetail"
@@ -51,5 +49,22 @@
         <argument
             android:name="detail"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/recommendation"
+        android:name="com.example.uts_160420029_jeremy.view.Recommendation"
+        android:label="fragment_recommendation"
+        tools:layout="@layout/fragment_recommendation" />
+    <fragment
+        android:id="@+id/categoryList"
+        android:name="com.example.uts_160420029_jeremy.view.CategoryList"
+        android:label="fragment_category_list"
+        tools:layout="@layout/fragment_category_list" >
+        <argument
+            android:name="category"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_categoryList_to_ubayaKulinerDetail"
+            app:destination="@id/ubayaKulinerDetail" />
     </fragment>
 </navigation>

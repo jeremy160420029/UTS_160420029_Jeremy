@@ -62,19 +62,21 @@ class UbayaKulinerDetail : Fragment() {
         val txtDescResto = view.findViewById<TextView>(R.id.txtDescResto)
         val txtReviewsResto = view.findViewById<TextView>(R.id.txtReviewsResto)
         val txtRatingResto = view.findViewById<TextView>(R.id.txtRatingResto)
+        val txtDisResto = view.findViewById<TextView>(R.id.txtDisResto)
         var imageResto = view.findViewById<ImageView>(R.id.imageResto)
         var progressBar = view.findViewById<ProgressBar>(R.id.progressBar4)
 
-        observeViewModel(txtRestoNameD, txtDescResto, txtReviewsResto, txtRatingResto, imageResto, progressBar)
+        observeViewModel(txtRestoNameD, txtDescResto, txtReviewsResto, txtRatingResto, txtDisResto, imageResto, progressBar)
     }
 
-    fun observeViewModel(txtRestoName: TextView, txtDescResto: TextView, txtReviewsResto: TextView, txtRatingResto: TextView, imageResto: ImageView, progressBar: ProgressBar) {
+    fun observeViewModel(txtRestoName: TextView, txtDescResto: TextView, txtReviewsResto: TextView, txtRatingResto: TextView, txtDisResto: TextView, imageResto: ImageView, progressBar: ProgressBar) {
         viewModel.foodDD.observe(viewLifecycleOwner, Observer {
             var foodList = it
             txtRestoName.text = foodList.restoName
             txtDescResto.text = foodList.description
             txtReviewsResto.text = foodList.restoReview
             txtRatingResto.text = foodList.restoRating
+            txtDisResto.text = foodList.distance
 
             imageResto.loadImage(foodList.photoUrl, progressBar)
         })
