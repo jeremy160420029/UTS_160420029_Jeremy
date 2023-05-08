@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/itemHistory"
-        android:name="com.example.uts_160420029_jeremy.view.History"
+        android:name="com.example.uts_160420029_jeremy.view.HistoryList"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
     <fragment
@@ -26,9 +26,13 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/itemReservation"
-        android:name="com.example.uts_160420029_jeremy.view.Reservation"
+        android:name="com.example.uts_160420029_jeremy.view.ReservationList"
         android:label="fragment_reservation"
-        tools:layout="@layout/fragment_reservation" />
+        tools:layout="@layout/fragment_reservation" >
+        <action
+            android:id="@+id/action_itemReservation_to_reservationDetail"
+            app:destination="@id/reservationDetail" />
+    </fragment>
     <fragment
         android:id="@+id/itemCategory"
         android:name="com.example.uts_160420029_jeremy.view.FoodCategory"
@@ -40,6 +44,9 @@
         <action
             android:id="@+id/action_itemCategory_to_recommendation"
             app:destination="@id/recommendation" />
+        <action
+            android:id="@+id/actionPromoList"
+            app:destination="@id/promoList" />
     </fragment>
     <fragment
         android:id="@+id/ubayaKulinerDetail"
@@ -52,9 +59,13 @@
     </fragment>
     <fragment
         android:id="@+id/recommendation"
-        android:name="com.example.uts_160420029_jeremy.view.Recommendation"
+        android:name="com.example.uts_160420029_jeremy.view.RecommendationList"
         android:label="fragment_recommendation"
-        tools:layout="@layout/fragment_recommendation" />
+        tools:layout="@layout/fragment_recommendation" >
+        <action
+            android:id="@+id/actionToRecDetail"
+            app:destination="@id/recommendationDetail" />
+    </fragment>
     <fragment
         android:id="@+id/categoryList"
         android:name="com.example.uts_160420029_jeremy.view.CategoryList"
@@ -66,5 +77,39 @@
         <action
             android:id="@+id/action_categoryList_to_ubayaKulinerDetail"
             app:destination="@id/ubayaKulinerDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/recommendationDetail"
+        android:name="com.example.uts_160420029_jeremy.view.RecommendationDetail"
+        android:label="fragment_recommendation_detail"
+        tools:layout="@layout/fragment_recommendation_detail" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/reservationDetail"
+        android:name="com.example.uts_160420029_jeremy.view.ReservationDetail"
+        android:label="fragment_reservation_detail"
+        tools:layout="@layout/fragment_reservation_detail" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/promoList"
+        android:name="com.example.uts_160420029_jeremy.view.PromoList"
+        android:label="fragment_promo_list"
+        tools:layout="@layout/fragment_promo_list" >
+        <action
+            android:id="@+id/action_promoList_to_promoListDetail"
+            app:destination="@id/promoListDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/promoListDetail"
+        android:name="com.example.uts_160420029_jeremy.view.PromoListDetail"
+        android:label="fragment_promo_list_detail"
+        tools:layout="@layout/fragment_promo_list_detail" >
+        <argument android:name="id" />
     </fragment>
 </navigation>

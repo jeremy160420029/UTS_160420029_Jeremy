@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.uts_160420029_jeremy.R
 import com.example.uts_160420029_jeremy.model.Category
 import com.example.uts_160420029_jeremy.util.loadImage
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class FoodCategoryAdapter (val categoryList:ArrayList<Category>)
     : RecyclerView.Adapter<FoodCategoryAdapter.FoodCategoryHolder>()

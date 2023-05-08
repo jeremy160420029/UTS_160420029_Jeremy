@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.PromoListDetail">
+    tools:context=".view.RecommendationDetail">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageRestoPLD"
+            android:id="@+id/imageRestoRD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -21,40 +21,61 @@
             tools:src="@tools:sample/avatars" />
 
         <ProgressBar
-            android:id="@+id/progressBarPLD"
+            android:id="@+id/progressBarRD"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/imageRestoPLD"
-            app:layout_constraintEnd_toEndOf="@+id/imageRestoPLD"
-            app:layout_constraintStart_toStartOf="@+id/imageRestoPLD"
-            app:layout_constraintTop_toTopOf="@+id/imageRestoPLD" />
+            app:layout_constraintBottom_toBottomOf="@+id/imageRestoRD"
+            app:layout_constraintEnd_toEndOf="@+id/imageRestoRD"
+            app:layout_constraintStart_toStartOf="@+id/imageRestoRD"
+            app:layout_constraintTop_toTopOf="@+id/imageRestoRD" />
 
         <TextView
-            android:id="@+id/txtPromoNamePLD"
+            android:id="@+id/textViewRD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:text="Nama Restaurant :"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageRestoRD" />
+
+        <TextView
+            android:id="@+id/txtDisRestoRD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="XXXXXXXX"
+            android:layout_marginEnd="32dp"
+            android:text="XX km"
             android:textSize="20sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageRestoPLD" />
+            app:layout_constraintTop_toBottomOf="@+id/imageRestoRD" />
 
         <TextView
-            android:id="@+id/textRestoNamePLD"
+            android:id="@+id/txtRankingRD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="#X"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/txtReviewsRestoRD" />
+
+        <TextView
+            android:id="@+id/textRestoNameRD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:text="XXX"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtPromoNamePLD" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewRD" />
 
         <TextView
-            android:id="@+id/txtDescPLD"
+            android:id="@+id/txtDescRestoRD"
             android:layout_width="359dp"
             android:layout_height="200dp"
             android:layout_marginStart="24dp"
@@ -72,21 +93,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
-            android:text="Deskripsi Promo :"
+            android:text="Deskripsi Resto :"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtPromoPLD" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="** Syarat dan Ketentuan Berlaku **"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtDescPLD" />
+            app:layout_constraintTop_toBottomOf="@+id/txtRatingRestoRD" />
 
         <TextView
             android:id="@+id/textView6"
@@ -94,32 +104,32 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:text="Masa Berlaku :"
+            android:text="Review :"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textRestoNamePLD" />
+            app:layout_constraintTop_toBottomOf="@+id/textRestoNameRD" />
 
         <TextView
-            android:id="@+id/txtDatePLD"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="XXXXXXXXX"
-            android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/textRestoNamePLD" />
-
-        <TextView
-            android:id="@+id/txtPromoPLD"
+            android:id="@+id/txtReviewsRestoRD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="XX.XX"
+            android:text="XXXX Reviews"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/textView6"
+            app:layout_constraintTop_toBottomOf="@+id/textRestoNameRD" />
+
+        <TextView
+            android:id="@+id/txtRatingRestoRD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:text="XX/5"
             android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/txtDatePLD" />
+            app:layout_constraintTop_toBottomOf="@+id/txtReviewsRestoRD" />
 
         <TextView
             android:id="@+id/textView8"
@@ -127,10 +137,21 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:text="Promo :"
+            android:text="Rating :"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtDatePLD" />
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Peringkat :"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/txtRatingRestoRD"
+            app:layout_constraintTop_toBottomOf="@+id/txtReviewsRestoRD" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

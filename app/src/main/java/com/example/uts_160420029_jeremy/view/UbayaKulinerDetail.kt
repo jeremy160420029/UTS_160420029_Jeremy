@@ -1,12 +1,10 @@
 package com.example.uts_160420029_jeremy.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -14,16 +12,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.uts_160420029_jeremy.R
 import com.example.uts_160420029_jeremy.util.loadImage
-import com.example.uts_160420029_jeremy.viewmodel.DetailFood
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
+import com.example.uts_160420029_jeremy.viewmodel.DetailFoodVM
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+private lateinit var viewModel: DetailFoodVM
 
 /**
  * A simple [Fragment] subclass.
@@ -34,7 +29,6 @@ class UbayaKulinerDetail : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var viewModel: DetailFood
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +49,7 @@ class UbayaKulinerDetail : Fragment() {
         if(arguments != null){
             detailFood = UbayaKulinerDetailArgs.fromBundle(requireArguments()).detail
         }
-        viewModel = ViewModelProvider(this).get(DetailFood::class.java)
+        viewModel = ViewModelProvider(this).get(DetailFoodVM::class.java)
         viewModel.fetch(detailFood)
 
         val txtRestoNameD = view.findViewById<TextView>(R.id.textRestoNameDD)

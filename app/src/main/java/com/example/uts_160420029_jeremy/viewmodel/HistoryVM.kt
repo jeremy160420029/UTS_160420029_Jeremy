@@ -8,47 +8,46 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.uts_160420029_jeremy.model.Food
+import com.example.uts_160420029_jeremy.model.History
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class FoodCategoryList(application: Application): AndroidViewModel(application) {
-    val foodDD = MutableLiveData<Food>()
-    val foodLoadErrorLD = MutableLiveData<Boolean>()
+class HistoryVM(application: Application): AndroidViewModel(application) {
+    val hisListLD = MutableLiveData<ArrayList<History>>()
+    val hisLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
     val TAG = "volleyTag"
     private var queue: RequestQueue? = null
 
-    fun fetch(category:String){
+    fun refresh() {
         loadingLD.value = true
-        foodLoadErrorLD.value = false
+        hisLoadErrorLD.value = false
 
         queue = Volley.newRequestQueue(getApplication())
-        val url = "https://raw.githubusercontent.com/jeremy160420029/UTS_160420029_Jeremy/main/foods.json"
+        val url = "https://raw.githubusercontent.com/jeremy160420029/UTS_160420029_Jeremy/main/history.json"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,
             {
-                val sType = object : TypeToken<List<Food>>() { }.type
-                val result = Gson().fromJson<List<Food>>(it, sType)
-
-                result.forEach{
-                    if(it.category.equals(category)){
-                        foodDD.value = it
-                    }
-                }
-
+                val sType = object : TypeToken<List<History>>() { }.type
+                val result = Gson().fromJson<List<History>>(it, sType)
+                hisListLD.value = result as ArrayList<History>?
                 loadingLD.value = false
-                Log.d("showvoley", foodDD.value.toString())
+
+                Log.d("showvoley", result.toString())
             },
             {
                 Log.d("showvoley", it.toString())
-                foodLoadErrorLD.value = false
+                hisLoadErrorLD.value = false
                 loadingLD.value = false
             })
 
         stringRequest.tag = TAG
         queue?.add(stringRequest)
+    }
 
+    override fun onCleared() {
+        super.onCleared()
+        queue?.cancelAll(TAG)
     }
 }

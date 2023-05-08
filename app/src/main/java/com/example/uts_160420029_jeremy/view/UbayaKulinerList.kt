@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.uts_160420029_jeremy.R
-import com.example.uts_160420029_jeremy.viewmodel.FoodList
+import com.example.uts_160420029_jeremy.viewmodel.FoodVM
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-private lateinit var viewModel: FoodList
+private lateinit var viewModel: FoodVM
 private val foodListAdapter = UbayaKulinerAdapter(arrayListOf())
 
 /**
@@ -49,7 +49,7 @@ class UbayaKulinerList : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel = ViewModelProvider(this).get(FoodList::class.java)
+        viewModel = ViewModelProvider(this).get(FoodVM::class.java)
         viewModel.refresh()
 
         val recView = view.findViewById<RecyclerView>(R.id.recView)

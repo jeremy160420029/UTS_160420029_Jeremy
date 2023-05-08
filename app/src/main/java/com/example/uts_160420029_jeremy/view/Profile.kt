@@ -1,12 +1,10 @@
 package com.example.uts_160420029_jeremy.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -14,11 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.uts_160420029_jeremy.R
 import com.example.uts_160420029_jeremy.util.loadImage
-import com.example.uts_160420029_jeremy.viewmodel.UserList
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
+import com.example.uts_160420029_jeremy.viewmodel.UserVM
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +28,7 @@ class Profile : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private lateinit var viewModel: UserList
+    private lateinit var viewModel: UserVM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +45,7 @@ class Profile : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel = ViewModelProvider(this).get(UserList::class.java)
+        viewModel = ViewModelProvider(this).get(UserVM::class.java)
         viewModel.fetch()
 
         val txtName = view.findViewById<TextView>(R.id.txtName)

@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.Reservation">
+    tools:context=".view.ReservationList">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refreshLayoutR"
+        android:id="@+id/refreshLayoutRS"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.Reservation">
+        tools:context=".view.ReservationList">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/txtErrorR"
+                android:id="@+id/txtErrorRS"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Error While Loading Data"
@@ -27,12 +27,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ProgressBar
-                android:id="@+id/progressLoadR"
+                android:id="@+id/progressLoadRS"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="340dp"
-                app:layout_constraintBottom_toBottomOf="@+id/recViewR"
+                app:layout_constraintBottom_toBottomOf="@+id/recViewRS"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +40,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recViewR"
+                android:id="@+id/recViewRS"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"

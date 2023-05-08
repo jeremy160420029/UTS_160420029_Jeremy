@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.uts_160420029_jeremy.R
-import com.example.uts_160420029_jeremy.viewmodel.FoodCategoryList
+import com.example.uts_160420029_jeremy.viewmodel.FoodCategoryVM
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-private lateinit var viewModel: FoodCategoryList
+private lateinit var viewModel: FoodCategoryVM
 private val catListAdapter = CategoryListAdapter(arrayListOf())
 
 /**
@@ -53,7 +53,7 @@ class CategoryList : Fragment() {
         if(arguments != null){
             catName = CategoryListArgs.fromBundle(requireArguments()).category
         }
-        viewModel = ViewModelProvider(this).get(FoodCategoryList::class.java)
+        viewModel = ViewModelProvider(this).get(FoodCategoryVM::class.java)
         viewModel.fetch(catName)
 
         val recView = view.findViewById<RecyclerView>(R.id.recViewCL)
