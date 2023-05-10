@@ -13,21 +13,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.uts_160420029_jeremy.R
-import com.example.uts_160420029_jeremy.viewmodel.FoodCategoryVM
+import com.example.uts_160420029_jeremy.viewmodel.ReviewVM
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-private lateinit var viewModel: FoodCategoryVM
-private val catListAdapter = CategoryListAdapter(arrayListOf())
+private lateinit var viewModel: ReviewVM
+private val revListAdapter = ReviewListAdapter(arrayListOf())
 
 /**
  * A simple [Fragment] subclass.
- * Use the [CategoryList.newInstance] factory method to
+ * Use the [ReviewList.newInstance] factory method to
  * create an instance of this fragment.
  */
-class CategoryList : Fragment() {
+class ReviewList : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -45,42 +45,42 @@ class CategoryList : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_category_list, container, false)
+        return inflater.inflate(R.layout.fragment_review_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var catName = ""
+        var resto = ""
         if(arguments != null){
-            catName = CategoryListArgs.fromBundle(requireArguments()).category
+            resto = ReviewListArgs.fromBundle(requireArguments()).resto
         }
-        viewModel = ViewModelProvider(this).get(FoodCategoryVM::class.java)
-        viewModel.fetch(catName)
+        viewModel = ViewModelProvider(this).get(ReviewVM::class.java)
+        viewModel.fetch(resto)
 
-        val recView = view.findViewById<RecyclerView>(R.id.recViewCL)
-        val progressLoad = view.findViewById<ProgressBar>(R.id.progressLoadCL)
-        val txtError = view.findViewById<TextView>(R.id.txtErrorCL)
-        val refreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.refreshLayoutCL)
+        val recView = view.findViewById<RecyclerView>(R.id.recViewRL)
+        val progressLoad = view.findViewById<ProgressBar>(R.id.progressLoadRL)
+        val txtError = view.findViewById<TextView>(R.id.txtErrorRL)
+        val refreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.refreshLayoutRL)
 
         recView.layoutManager = LinearLayoutManager(context)
-        recView.adapter = catListAdapter
+        recView.adapter = revListAdapter
         observeViewModel(txtError, recView, progressLoad)
 
         refreshLayout.setOnRefreshListener {
             recView.visibility = View.GONE
             txtError.visibility = View.GONE
             progressLoad.visibility = View.VISIBLE
-            viewModel.fetch(catName)
+            viewModel.fetch(resto)
             refreshLayout.isRefreshing = false
         }
     }
 
     fun observeViewModel(txtError: TextView, recView: RecyclerView, progressLoad: ProgressBar) {
-        viewModel.foodListLD.observe(viewLifecycleOwner, Observer {
-            catListAdapter.updateFoodList(it)
+        viewModel.revListLD.observe(viewLifecycleOwner, Observer {
+            revListAdapter.updateRevList(it)
         })
 
-        viewModel.foodLoadErrorLD.observe(viewLifecycleOwner, Observer {
-            if(it == true) {
+        viewModel.revLoadErrorLD.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
                 txtError.visibility = View.VISIBLE
             } else {
                 txtError.visibility = View.GONE
@@ -88,7 +88,7 @@ class CategoryList : Fragment() {
         })
 
         viewModel.loadingLD.observe(viewLifecycleOwner, Observer {
-            if(it == true) {
+            if (it == true) {
                 recView.visibility = View.GONE
                 progressLoad.visibility = View.VISIBLE
             } else {
@@ -96,7 +96,6 @@ class CategoryList : Fragment() {
                 progressLoad.visibility = View.GONE
             }
         })
-
     }
 
     companion object {
@@ -106,12 +105,12 @@ class CategoryList : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment CategoryList.
+         * @return A new instance of fragment ReviewList.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            CategoryList().apply {
+            ReviewList().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

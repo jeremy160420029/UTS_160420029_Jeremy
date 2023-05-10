@@ -131,5 +131,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
+        <Button
+            android:id="@+id/btnReviewFD"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="32dp"
+            android:text="Lihat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtDisResto" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

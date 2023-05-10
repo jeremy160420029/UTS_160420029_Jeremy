@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.uts_160420029_jeremy.R
 import com.example.uts_160420029_jeremy.util.loadImage
 import com.example.uts_160420029_jeremy.viewmodel.DetailFoodVM
@@ -63,11 +65,12 @@ class RecommendationDetail : Fragment() {
         val txtRanking = view.findViewById<TextView>(R.id.txtRankingRD)
         var imageResto = view.findViewById<ImageView>(R.id.imageRestoRD)
         var progressBar = view.findViewById<ProgressBar>(R.id.progressBarRD)
+        var btnReviewRD = view.findViewById<Button>(R.id.btnReviewRD)
 
-        observeViewModel(txtRestoNameD, txtDescResto, txtReviewsResto, txtRatingResto, txtDisResto, txtRanking, imageResto, progressBar)
+        observeViewModel(txtRestoNameD, txtDescResto, txtReviewsResto, txtRatingResto, txtDisResto, txtRanking, imageResto, progressBar, btnReviewRD)
     }
 
-    fun observeViewModel(txtRestoName: TextView, txtDescResto: TextView, txtReviewsResto: TextView, txtRatingResto: TextView, txtDisResto: TextView, txtRanking: TextView, imageResto: ImageView, progressBar: ProgressBar) {
+    fun observeViewModel(txtRestoName: TextView, txtDescResto: TextView, txtReviewsResto: TextView, txtRatingResto: TextView, txtDisResto: TextView, txtRanking: TextView, imageResto: ImageView, progressBar: ProgressBar, btnReviewRD: Button) {
         viewModel.recDD.observe(viewLifecycleOwner, Observer {
             var recList = it
             txtRestoName.text = recList.restoName
@@ -78,6 +81,11 @@ class RecommendationDetail : Fragment() {
             txtRanking.text = recList.ranking
 
             imageResto.loadImage(recList.photoUrl, progressBar)
+
+            btnReviewRD.setOnClickListener {
+                val action = RecommendationDetailDirections.actionRecommendationDetailToReviewList(recList.restoName.toString())
+                Navigation.findNavController(it).navigate(action)
+            }
         })
     }
 

@@ -56,6 +56,9 @@
         <argument
             android:name="detail"
             app:argType="string" />
+        <action
+            android:id="@+id/action_ubayaKulinerDetail_to_reviewList"
+            app:destination="@id/reviewList" />
     </fragment>
     <fragment
         android:id="@+id/recommendation"
@@ -86,6 +89,9 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <action
+            android:id="@+id/action_recommendationDetail_to_reviewList"
+            app:destination="@id/reviewList" />
     </fragment>
     <fragment
         android:id="@+id/reservationDetail"
@@ -111,5 +117,14 @@
         android:label="fragment_promo_list_detail"
         tools:layout="@layout/fragment_promo_list_detail" >
         <argument android:name="id" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewList"
+        android:name="com.example.uts_160420029_jeremy.view.ReviewList"
+        android:label="fragment_review_list"
+        tools:layout="@layout/fragment_review_list" >
+        <argument
+            android:name="resto"
+            app:argType="string" />
     </fragment>
 </navigation>

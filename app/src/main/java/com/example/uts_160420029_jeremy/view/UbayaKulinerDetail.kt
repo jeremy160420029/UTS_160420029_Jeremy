@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.uts_160420029_jeremy.R
 import com.example.uts_160420029_jeremy.util.loadImage
 import com.example.uts_160420029_jeremy.viewmodel.DetailFoodVM
@@ -60,10 +62,12 @@ class UbayaKulinerDetail : Fragment() {
         var imageResto = view.findViewById<ImageView>(R.id.imageResto)
         var progressBar = view.findViewById<ProgressBar>(R.id.progressBar4)
 
-        observeViewModel(txtRestoNameD, txtDescResto, txtReviewsResto, txtRatingResto, txtDisResto, imageResto, progressBar)
+        var btnReviewFD = view.findViewById<Button>(R.id.btnReviewFD)
+
+        observeViewModel(txtRestoNameD, txtDescResto, txtReviewsResto, txtRatingResto, txtDisResto, imageResto, progressBar, btnReviewFD)
     }
 
-    fun observeViewModel(txtRestoName: TextView, txtDescResto: TextView, txtReviewsResto: TextView, txtRatingResto: TextView, txtDisResto: TextView, imageResto: ImageView, progressBar: ProgressBar) {
+    fun observeViewModel(txtRestoName: TextView, txtDescResto: TextView, txtReviewsResto: TextView, txtRatingResto: TextView, txtDisResto: TextView, imageResto: ImageView, progressBar: ProgressBar, btnReviewFD: Button) {
         viewModel.foodDD.observe(viewLifecycleOwner, Observer {
             var foodList = it
             txtRestoName.text = foodList.restoName
@@ -73,6 +77,11 @@ class UbayaKulinerDetail : Fragment() {
             txtDisResto.text = foodList.distance
 
             imageResto.loadImage(foodList.photoUrl, progressBar)
+
+            btnReviewFD.setOnClickListener {
+                val action = UbayaKulinerDetailDirections.actionUbayaKulinerDetailToReviewList(foodList.restoName.toString())
+                Navigation.findNavController(it).navigate(action)
+            }
         })
     }
 

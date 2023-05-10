@@ -24,9 +24,9 @@ class CategoryListAdapter(val foodList:ArrayList<Food>)
         return CategoryListHolder(view)
     }
 
-    fun updateFoodList(newFoodList: Food) {
+    fun updateFoodList(newFoodList: ArrayList<Food>) {
         foodList.clear()
-        foodList.addAll(listOf(newFoodList))
+        foodList.addAll(newFoodList)
         notifyDataSetChanged()
     }
 
